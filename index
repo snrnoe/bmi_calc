@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Body Mass Index Analyses</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./vendor/skeleton/normalize.css"
+    />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="./css/style.css"
+  />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./vendor/skeleton/skeleton.css"
+    />
+    <script type="text/javascript">
+      function BMI() {
+        var h=document.getElementById('h').value;
+        var w=document.getElementById('w').value;
+        //var a=document.getElementById('a').value;
+        var g=document.getElementById('g').value;
+        var under=0
+        var over=0
+        var mScale=[20, 25, 30, 40, 50];
+        var fScale=[19, 24, 30, 40, 50];
+        var wScale=[];
+        var aIndex=0
+        var aScale=[24, 34, 44, 54, 64];
+        var bmiScale=["underweight", "normalweight", "overweight", "adipositas", "massive adipositas"];
+        var bmi=w/(h/100)**2;
+        var bmio=(bmi.toFixed(0));
+
+        function weightScale(){
+          document.getElementById("result2").innerHTML = "Your actual weight equals " + bmiScale[i] +"!";
+        }
+        function underWeight(){
+          let underWeight=wScale[under]*(h/100)**2;
+          let underWeightO=(underWeight.toFixed(2));
+          var upperWeight=wScale[i]*(h/100)**2;
+          var upperWeightO=(upperWeight.toFixed(2));
+          document.getElementById("result3").innerHTML = bmiScale[i] + " starts at weight of " + underWeightO+"kg " + "and ends at weight of " + upperWeightO +"kg!";
+        }
+
+        if (g==="male"){
+            wScale=mScale;
+            }
+        else if(g==="female") {
+            wScale=fScale;
+        }
+
+        if(!(h==='')&& !(w==='')){
+          document.getElementById("result1").innerHTML = "Your BMI is " + bmio;
+          for (var i in wScale){
+            if (bmio<=wScale[i]){
+                under= i;
+                under--;
+                over= i;
+                over++;
+                weightScale(i);
+                underWeight(i);
+                break;
+            }
+        }
+        } else if(h===''|| h == null){
+          document.getElementById("result1").innerHTML = "Please insert Height";
+        } else if(w===''|| w == null){
+          document.getElementById("result1").innerHTML = "Please insert Weight";
+        }
+
+        }
+    </script>
+  </head>
+  <body class="container background">
+    <header class="header">
+      <div class="box shadow center">
+        <div class="box">
+          <h1>Body Mass Index Analyse</h1>
+        </div>
+      </div>
+    </header>
+    <main>
+        <div class="box shadow center" id="form">
+            <h2>Please insert your data:</h2>
+            <label class="text" for="Gender">Gender</p>
+            <select class="text" name="Gender" id="g">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+          <!--  <label class="text" for="age">Age</p>
+            <input type="text" name="age" id="a" placeholder="34"> -->
+            <label class="text" for="height">Height</p>
+            <input type="number" name="height" id="h">
+            <label class="text" for="weight">Weight</p>
+            <input type="number" name="weight" id="w"></label>
+            <div id="error"></div>
+            <button class= "btn" id="btn" type="reset">Clear</button>
+            <button class="btn2" id="btn" type="submit" onClick="BMI()">Calculate</button>            
+            <p id="info">*Please enter height[cm] and weight [kg]!</p>
+        </div>
+    </main>
+    <footer>
+        <div class="box shadow center">
+            <h1>Your Results:</h3>
+            <p id="result1"></p>
+            <p id="result2"></p>
+            <p id="result3"></p>
+            <p id="result4"></p>
+            <p id="result5"></p>
+            <p id="result6"></p>
+            <p id="result7"></p>
+            <div id="scala">
+              
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>
